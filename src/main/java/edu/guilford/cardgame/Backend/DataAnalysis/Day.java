@@ -1,4 +1,4 @@
-package edu.guilford.cardgame.Backend.Data;
+package edu.guilford.cardgame.Backend.DataAnalysis;
 
 public class Day {
 

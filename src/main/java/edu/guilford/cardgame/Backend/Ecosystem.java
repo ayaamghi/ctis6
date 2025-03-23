@@ -1,11 +1,12 @@
 package edu.guilford.cardgame.Backend;
 
-import edu.guilford.cardgame.Backend.Data.SimulationResults;
+import edu.guilford.cardgame.Backend.DataAnalysis.SimulationResults;
 import edu.guilford.cardgame.Backend.Organisms.Creature;
 import edu.guilford.cardgame.Backend.Organisms.MeatEater;
 import edu.guilford.cardgame.Backend.Organisms.Plant;
 import edu.guilford.cardgame.Backend.Organisms.PlantEater;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import edu.guilford.cardgame.Backend.Params.ParameterRecord;
@@ -19,7 +20,7 @@ public class Ecosystem {
 
     Random random = new Random();
 
-    public Ecosystem(ParameterRecord parameterRecord) {
+    public Ecosystem(ParameterRecord parameterRecord) throws IOException {
 
         this.parameterRecord = parameterRecord;
         plants = new ArrayList<>();

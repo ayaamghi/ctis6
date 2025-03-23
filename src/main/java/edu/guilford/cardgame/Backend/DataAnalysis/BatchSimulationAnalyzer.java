@@ -1,8 +1,7 @@
-package edu.guilford.cardgame.Backend.Data;
+package edu.guilford.cardgame.Backend.DataAnalysis;
 
 import edu.guilford.cardgame.Backend.Params.ParameterRecord;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public class BatchSimulationAnalyzer {
