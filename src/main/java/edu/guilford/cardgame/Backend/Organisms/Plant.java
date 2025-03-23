@@ -1,7 +1,7 @@
-package edu.guilford.cardgame.Backend;
+package edu.guilford.cardgame.Backend.Organisms;
 
 
-import edu.guilford.cardgame.Backend.Parameters;
+import edu.guilford.cardgame.Backend.Params.ParameterRecord ;
 
 /***
  * This class creates Plants that extend creature
@@ -9,9 +9,9 @@ import edu.guilford.cardgame.Backend.Parameters;
  */
 public class Plant extends Creature {
 
-    public Plant(double size, double growthRate) {
-        super(size, growthRate, Parameters.LIFESPAN_PLANT.getIntValue());
-    }
+     public Plant(double size, double growthRate, ParameterRecord parameterRecord) {
+        super(size, growthRate, parameterRecord.lifespanPlant(), parameterRecord);
+     }
 
     /***
      * This method simulates the plant being chewed on. It changes the size of the plant by the amount passed in. If the amount is greater than the size of the plant, the plant dies.
@@ -29,7 +29,7 @@ public class Plant extends Creature {
      */
     @Override
     public void simulateDay() {
-        if(age > lifespan && Math.random() < Parameters.PROBABILITY_OLD_AGE_DEATH_PLANT.getValue()) {
+        if(age > lifespan && Math.random() < parameterRecord.probabilityOldAgeDeathPlant()) {
             die();
         }
         super.simulateDay();

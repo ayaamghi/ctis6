@@ -1,9 +1,10 @@
-package edu.guilford.cardgame.Backend;
+package edu.guilford.cardgame.Backend.Params;
 
 
 /***
  * This enum class is used to store the parameters that will be used in the simulation.
  * The parameters are stored as doubles or ints, and can be accessed using the getValue() or getIntValue() methods.
+ * Legacy system from the original assignment, kept around for default values
  */
 public enum Parameters {
 

@@ -1,4 +1,6 @@
-package edu.guilford.cardgame.Backend;
+package edu.guilford.cardgame.Backend.Organisms;
+
+import edu.guilford.cardgame.Backend.Params.ParameterRecord ;
 
 /***
  * This class is the parent class for all the creatures in the simulation. It has the basic attributes and methods that all creatures will have.
@@ -10,13 +12,15 @@ public abstract class Creature {
     protected boolean alive;
     protected int age;
     protected int lifespan;
+    protected ParameterRecord parameterRecord;
 
-    public Creature(double size, double growthRate, int lifespan ) {
+    public Creature(double size, double growthRate, int lifespan, ParameterRecord parameterRecord ) {
         this.size = size;
         this.growthRate = growthRate;
         this.alive = true;
         this.age = 0;
         this.lifespan = lifespan;
+        this.parameterRecord = parameterRecord;
     }
 
     public double getSize() {

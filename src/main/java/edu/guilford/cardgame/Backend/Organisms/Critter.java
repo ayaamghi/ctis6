@@ -1,4 +1,6 @@
-package edu.guilford.cardgame.Backend;
+package edu.guilford.cardgame.Backend.Organisms;
+
+import edu.guilford.cardgame.Backend.Params.ParameterRecord ;
 
 /***
  * This class is the parent class for critters, defined as the plant eaters and meat eaters.
@@ -8,8 +10,8 @@ public abstract class Critter extends Creature {
     protected double foodNeed;
     protected double foodEaten;
 
-    public Critter(double size, double growthRate, double foodNeed, int lifespan) {
-        super(size, growthRate, lifespan);
+    public Critter(double size, double growthRate, double foodNeed, int lifespan, ParameterRecord parameterRecord) {
+        super(size, growthRate, lifespan, parameterRecord);
         this.foodNeed = foodNeed;
         this.foodEaten = 0;
 
@@ -55,6 +57,6 @@ public abstract class Critter extends Creature {
     @Override
     public void changeSize(double amount) {
         super.changeSize(amount);
-        foodNeed = size * 0.1; //call super changeSize method and then update foodNeed
+        foodNeed = size * parameterRecord.updateFoodNeedPercentage(); //TODO change this to use updateFoodNeed amount passed in as a record
     }
 }

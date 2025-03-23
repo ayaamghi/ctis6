@@ -1,4 +1,6 @@
-package edu.guilford.cardgame.Backend;
+package edu.guilford.cardgame.Backend.Organisms;
+
+import edu.guilford.cardgame.Backend.Params.ParameterRecord ;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -6,11 +8,11 @@ import java.util.Random;
 public class MeatEater extends Critter {
     private Random random = new Random();
     private ArrayList<PlantEater> plantEaters;
-    private static final double  PROBABILITY_TO_CATCH = .6; 
 
-    public MeatEater(double size, double growthRate, double foodNeed, ArrayList<PlantEater> plantEaters) {
-        super(size, growthRate, foodNeed, Parameters.LIFESPAN_MEAT_EATER.getIntValue());
+    public MeatEater(double size, double growthRate, double foodNeed, ArrayList<PlantEater> plantEaters, ParameterRecord parameterRecord) {
+        super(size, growthRate, foodNeed, parameterRecord.lifespanMeatEater(), parameterRecord);
         this.plantEaters = plantEaters;
+        this.parameterRecord = parameterRecord;
     }
 
     /***
@@ -18,16 +20,16 @@ public class MeatEater extends Critter {
      */
     @Override 
     public void simulateDay() { 
-        int numToEat = random.nextInt(1, 3); 
+        int numToEat = random.nextInt(parameterRecord.lowerBoundNumPlantEatersEat(), parameterRecord.upperBoundNumPlantEatersEat());
         //use the prob to catch variable in order to determine if the meat eater will catch the plant eater
         for (int i = 0; i < numToEat; i++) {
-            if (random.nextDouble() < PROBABILITY_TO_CATCH) {
+            if (random.nextDouble() < parameterRecord.meatEaterProbabilityToCatch()) {
                 PlantEater plantEater = plantEaters.get(random.nextInt(plantEaters.size()));
                 eat(plantEater.getSize());
                 plantEater.die();
             }
 
-            if(age > lifespan && random.nextDouble() < Parameters.PROBABILITY_OLD_AGE_DEATH_MEAT_EATER.getValue()) {
+            if(age > lifespan && random.nextDouble() < parameterRecord.probabilityOldAgeDeathMeatEater()) {
                 die();
             }
             super.simulateDay();
