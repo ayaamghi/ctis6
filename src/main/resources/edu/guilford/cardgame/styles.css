@@ -1,0 +1,5 @@
+.small-scatter .chart-symbol {
+    -fx-background-radius: 2px;
+    -fx-padding: 1px;
+    -fx-background-color: #000000;
+}

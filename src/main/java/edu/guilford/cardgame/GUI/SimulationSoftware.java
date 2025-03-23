@@ -10,29 +10,32 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ThirtyOneGame extends Application {
+public class SimulationSoftware extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/edu/guilford/cardgame/instantiate-game.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/edu/guilford/cardgame/login-page.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        System.out.println("printing");
 
 
-        if(Screen.getScreens().size() == 2) {
+        if(Screen.getScreens().size()  >= 2) {
             // Get the list of screens
             Screen secondScreen = Screen.getScreens().get(1); // Assuming the second screen is at index 1
             Rectangle2D bounds = secondScreen.getVisualBounds();
-            stage.setX(bounds.getMinX());
-            stage.setY(bounds.getMaxY() / 4);
+            stage.setX(bounds.getMaxX());
+            stage.setY(bounds.getMaxY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight()/2);
+            System.out.println(bounds.getWidth());
+            System.out.println(bounds.getHeight()/2);
         }
         else {
             stage.setX(0);
             stage.setY(0);
 
-            stage.setWidth(600);
-            stage.setHeight(400);
+            stage.setWidth(1080.0);
+            stage.setHeight(947.5);
 
         }
         stage.show();

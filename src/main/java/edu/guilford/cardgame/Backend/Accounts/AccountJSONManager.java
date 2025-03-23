@@ -16,4 +16,9 @@ public class AccountJSONManager {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new File(filePath), user);
     }
+
+    public static boolean doesUserExist(User user) {
+        File file = new File("src/main/resources/Users/" + user.getName() + ".json");
+        return file.exists();
+    }
 }
