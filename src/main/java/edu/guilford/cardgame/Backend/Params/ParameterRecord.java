@@ -3,46 +3,48 @@ package edu.guilford.cardgame.Backend.Params;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+public class ParameterRecord {
 
-public record ParameterRecord(
-        double lowerBoundNumPlantsToChew,
-        double upperBoundNumPlantsToChew,
-        double amountOfPlantMaxChewed,
-        double percentageOfFoodNeedToChew,
-        double floorOnChewAmount,
-        double meatEaterSize,
-        double meatEaterGrowthRate,
-        double meatEaterFoodNeed,
-        double probabilityOldAgeDeathPlantEater,
-        double probabilityOldAgeDeathMeatEater,
-        double probabilityOldAgeDeathPlant,
-        double probabilityOldAgeDeathCreature,
-        int lifespanPlant,
-        int lifespanPlantEater,
-        int lifespanMeatEater,
-        int numMeatEaters, //150 by default
-        double updateFoodNeedPercentage, //was .1 by default
-        double meatEaterProbabilityToCatch, //was .4 by default
-        int lowerBoundNumPlantEatersEat, //was 1 by default
-        int upperBoundNumPlantEatersEat, //was 3 by default
-        int numPlantEaters, //300 by defaul
-        int numPlants, //2000 by default
-        int plantSizeLowerBound, //900 by default
-        int plantSizeUpperBound, //1100 by default
-        int plantGrowthRate, //5 by default
-        int plantEaterSizeLowerBound, //900 by default
-        int plantEaterSizeUpperBound, //1100 by default
-        int plantEaterGrowthRate, //3 by default
-        int plantEaterFoodNeed, //50 by default
-        double plantReproductionProbability, //was .05 by default
-        int floorNewPlantSize, //was 250 by default
-        int ceilingNewPlantSize, //was 350 by default
-        double plantEaterReproductionProbability, //was .05 by default
-        int floorNewPlantEaterSize, //was 900 by default
-        int ceilingNewPlantEaterSize, //was 1100 by default
-        double meatEaterReproductionProbability //was .30 by default
- ) {
+    private double lowerBoundNumPlantsToChew;
+    private double upperBoundNumPlantsToChew;
+    private double amountOfPlantMaxChewed;
+    private double percentageOfFoodNeedToChew;
+    private double floorOnChewAmount;
+    private double meatEaterSize;
+    private double meatEaterGrowthRate;
+    private double meatEaterFoodNeed;
+    private double probabilityOldAgeDeathPlantEater;
+    private double probabilityOldAgeDeathMeatEater;
+    private double probabilityOldAgeDeathPlant;
+    private double probabilityOldAgeDeathCreature;
+    private int lifespanPlant;
+    private int lifespanPlantEater;
+    private int lifespanMeatEater;
+    private int numMeatEaters;
+    private double updateFoodNeedPercentage;
+    private double meatEaterProbabilityToCatch;
+    private int lowerBoundNumPlantEatersEat;
+    private int upperBoundNumPlantEatersEat;
+    private int numPlantEaters;
+    private int numPlants;
+    private int plantSizeLowerBound;
+    private int plantSizeUpperBound;
+    private int plantGrowthRate;
+    private int plantEaterSizeLowerBound;
+    private int plantEaterSizeUpperBound;
+    private int plantEaterGrowthRate;
+    private int plantEaterFoodNeed;
+    private double plantReproductionProbability;
+    private int floorNewPlantSize;
+    private int ceilingNewPlantSize;
+    private double plantEaterReproductionProbability;
+    private int floorNewPlantEaterSize;
+    private int ceilingNewPlantEaterSize;
+    private double meatEaterReproductionProbability;
 
+    /**
+     * No-argument constructor that sets default values matching the original record.
+     */
     public ParameterRecord() {
         this(
                 Parameters.LOWER_BOUND_NUM_PLANTS_TO_CHEW.getValue(),
@@ -61,34 +63,436 @@ public record ParameterRecord(
                 Parameters.LIFESPAN_PLANT_EATER.getIntValue(),
                 Parameters.LIFESPAN_MEAT_EATER.getIntValue(),
                 Parameters.NUM_MEAT_EATERS.getIntValue(),
-                0.1, // updateFoodNeedPercentage
-                0.4, // meatEaterProbabilityToCatch
-                1,   // lowerBoundNumPlantEatersEat
-                3,    // upperBoundNumPlantEatersEat
-                300,  // numPlantEaters
-                2000, // numPlants
-                900,  // plantSizeLowerBound
-                1100, // plantSizeUpperBound
-                5,    // plantGrowthRate
-                900,  // plantEaterSizeLowerBound
-                1100, // plantEaterSizeUpperBound
-                3,    // plantEaterGrowthRate
+                0.1,   // updateFoodNeedPercentage
+                0.4,   // meatEaterProbabilityToCatch
+                1,     // lowerBoundNumPlantEatersEat
+                3,     // upperBoundNumPlantEatersEat
+                300,   // numPlantEaters
+                2000,  // numPlants
+                900,   // plantSizeLowerBound
+                1100,  // plantSizeUpperBound
+                5,     // plantGrowthRate
+                900,   // plantEaterSizeLowerBound
+                1100,  // plantEaterSizeUpperBound
+                3,     // plantEaterGrowthRate
                 50,    // plantEaterFoodNeed
-                0.05, // plantReproductionProbability
-                250,  // floorNewPlantSize
-                350,  // ceilingNewPlantSize
-                0.05, // plantEaterReproductionProbability
-                900,  // floorNewPlantEaterSize
-                1100, // ceilingNewPlantEaterSize
-                1 // meatEaterReproductionProbability
+                0.05,  // plantReproductionProbability
+                250,   // floorNewPlantSize
+                350,   // ceilingNewPlantSize
+                0.05,  // plantEaterReproductionProbability
+                900,   // floorNewPlantEaterSize
+                1100,  // ceilingNewPlantEaterSize
+                1      // meatEaterReproductionProbability
         );
     }
 
+    /**
+     * Full constructor mirroring the original record signature.
+     */
+    public ParameterRecord(
+            double lowerBoundNumPlantsToChew,
+            double upperBoundNumPlantsToChew,
+            double amountOfPlantMaxChewed,
+            double percentageOfFoodNeedToChew,
+            double floorOnChewAmount,
+            double meatEaterSize,
+            double meatEaterGrowthRate,
+            double meatEaterFoodNeed,
+            double probabilityOldAgeDeathPlantEater,
+            double probabilityOldAgeDeathMeatEater,
+            double probabilityOldAgeDeathPlant,
+            double probabilityOldAgeDeathCreature,
+            int lifespanPlant,
+            int lifespanPlantEater,
+            int lifespanMeatEater,
+            int numMeatEaters,
+            double updateFoodNeedPercentage,
+            double meatEaterProbabilityToCatch,
+            int lowerBoundNumPlantEatersEat,
+            int upperBoundNumPlantEatersEat,
+            int numPlantEaters,
+            int numPlants,
+            int plantSizeLowerBound,
+            int plantSizeUpperBound,
+            int plantGrowthRate,
+            int plantEaterSizeLowerBound,
+            int plantEaterSizeUpperBound,
+            int plantEaterGrowthRate,
+            int plantEaterFoodNeed,
+            double plantReproductionProbability,
+            int floorNewPlantSize,
+            int ceilingNewPlantSize,
+            double plantEaterReproductionProbability,
+            int floorNewPlantEaterSize,
+            int ceilingNewPlantEaterSize,
+            double meatEaterReproductionProbability
+    ) {
+        this.lowerBoundNumPlantsToChew = lowerBoundNumPlantsToChew;
+        this.upperBoundNumPlantsToChew = upperBoundNumPlantsToChew;
+        this.amountOfPlantMaxChewed = amountOfPlantMaxChewed;
+        this.percentageOfFoodNeedToChew = percentageOfFoodNeedToChew;
+        this.floorOnChewAmount = floorOnChewAmount;
+        this.meatEaterSize = meatEaterSize;
+        this.meatEaterGrowthRate = meatEaterGrowthRate;
+        this.meatEaterFoodNeed = meatEaterFoodNeed;
+        this.probabilityOldAgeDeathPlantEater = probabilityOldAgeDeathPlantEater;
+        this.probabilityOldAgeDeathMeatEater = probabilityOldAgeDeathMeatEater;
+        this.probabilityOldAgeDeathPlant = probabilityOldAgeDeathPlant;
+        this.probabilityOldAgeDeathCreature = probabilityOldAgeDeathCreature;
+        this.lifespanPlant = lifespanPlant;
+        this.lifespanPlantEater = lifespanPlantEater;
+        this.lifespanMeatEater = lifespanMeatEater;
+        this.numMeatEaters = numMeatEaters;
+        this.updateFoodNeedPercentage = updateFoodNeedPercentage;
+        this.meatEaterProbabilityToCatch = meatEaterProbabilityToCatch;
+        this.lowerBoundNumPlantEatersEat = lowerBoundNumPlantEatersEat;
+        this.upperBoundNumPlantEatersEat = upperBoundNumPlantEatersEat;
+        this.numPlantEaters = numPlantEaters;
+        this.numPlants = numPlants;
+        this.plantSizeLowerBound = plantSizeLowerBound;
+        this.plantSizeUpperBound = plantSizeUpperBound;
+        this.plantGrowthRate = plantGrowthRate;
+        this.plantEaterSizeLowerBound = plantEaterSizeLowerBound;
+        this.plantEaterSizeUpperBound = plantEaterSizeUpperBound;
+        this.plantEaterGrowthRate = plantEaterGrowthRate;
+        this.plantEaterFoodNeed = plantEaterFoodNeed;
+        this.plantReproductionProbability = plantReproductionProbability;
+        this.floorNewPlantSize = floorNewPlantSize;
+        this.ceilingNewPlantSize = ceilingNewPlantSize;
+        this.plantEaterReproductionProbability = plantEaterReproductionProbability;
+        this.floorNewPlantEaterSize = floorNewPlantEaterSize;
+        this.ceilingNewPlantEaterSize = ceilingNewPlantEaterSize;
+        this.meatEaterReproductionProbability = meatEaterReproductionProbability;
+    }
 
+    // -- Getters (named like record accessors) --
 
+    public double lowerBoundNumPlantsToChew() {
+        return lowerBoundNumPlantsToChew;
+    }
+
+    public double upperBoundNumPlantsToChew() {
+        return upperBoundNumPlantsToChew;
+    }
+
+    public double amountOfPlantMaxChewed() {
+        return amountOfPlantMaxChewed;
+    }
+
+    public double percentageOfFoodNeedToChew() {
+        return percentageOfFoodNeedToChew;
+    }
+
+    public double floorOnChewAmount() {
+        return floorOnChewAmount;
+    }
+
+    public double meatEaterSize() {
+        return meatEaterSize;
+    }
+
+    public double meatEaterGrowthRate() {
+        return meatEaterGrowthRate;
+    }
+
+    public double meatEaterFoodNeed() {
+        return meatEaterFoodNeed;
+    }
+
+    public double probabilityOldAgeDeathPlantEater() {
+        return probabilityOldAgeDeathPlantEater;
+    }
+
+    public double probabilityOldAgeDeathMeatEater() {
+        return probabilityOldAgeDeathMeatEater;
+    }
+
+    public double probabilityOldAgeDeathPlant() {
+        return probabilityOldAgeDeathPlant;
+    }
+
+    public double probabilityOldAgeDeathCreature() {
+        return probabilityOldAgeDeathCreature;
+    }
+
+    public int lifespanPlant() {
+        return lifespanPlant;
+    }
+
+    public int lifespanPlantEater() {
+        return lifespanPlantEater;
+    }
+
+    public int lifespanMeatEater() {
+        return lifespanMeatEater;
+    }
+
+    public int numMeatEaters() {
+        return numMeatEaters;
+    }
+
+    public double updateFoodNeedPercentage() {
+        return updateFoodNeedPercentage;
+    }
+
+    public double meatEaterProbabilityToCatch() {
+        return meatEaterProbabilityToCatch;
+    }
+
+    public int lowerBoundNumPlantEatersEat() {
+        return lowerBoundNumPlantEatersEat;
+    }
+
+    public int upperBoundNumPlantEatersEat() {
+        return upperBoundNumPlantEatersEat;
+    }
+
+    public int numPlantEaters() {
+        return numPlantEaters;
+    }
+
+    public int numPlants() {
+        return numPlants;
+    }
+
+    public int plantSizeLowerBound() {
+        return plantSizeLowerBound;
+    }
+
+    public int plantSizeUpperBound() {
+        return plantSizeUpperBound;
+    }
+
+    public int plantGrowthRate() {
+        return plantGrowthRate;
+    }
+
+    public int plantEaterSizeLowerBound() {
+        return plantEaterSizeLowerBound;
+    }
+
+    public int plantEaterSizeUpperBound() {
+        return plantEaterSizeUpperBound;
+    }
+
+    public int plantEaterGrowthRate() {
+        return plantEaterGrowthRate;
+    }
+
+    public int plantEaterFoodNeed() {
+        return plantEaterFoodNeed;
+    }
+
+    public double plantReproductionProbability() {
+        return plantReproductionProbability;
+    }
+
+    public int floorNewPlantSize() {
+        return floorNewPlantSize;
+    }
+
+    public int ceilingNewPlantSize() {
+        return ceilingNewPlantSize;
+    }
+
+    public double plantEaterReproductionProbability() {
+        return plantEaterReproductionProbability;
+    }
+
+    public int floorNewPlantEaterSize() {
+        return floorNewPlantEaterSize;
+    }
+
+    public int ceilingNewPlantEaterSize() {
+        return ceilingNewPlantEaterSize;
+    }
+
+    public double meatEaterReproductionProbability() {
+        return meatEaterReproductionProbability;
+    }
+
+    // -- Setters --
+
+    public void setLowerBoundNumPlantsToChew(double lowerBoundNumPlantsToChew) {
+        this.lowerBoundNumPlantsToChew = lowerBoundNumPlantsToChew;
+    }
+
+    public void setUpperBoundNumPlantsToChew(double upperBoundNumPlantsToChew) {
+        this.upperBoundNumPlantsToChew = upperBoundNumPlantsToChew;
+    }
+
+    public void setAmountOfPlantMaxChewed(double amountOfPlantMaxChewed) {
+        this.amountOfPlantMaxChewed = amountOfPlantMaxChewed;
+    }
+
+    public void setPercentageOfFoodNeedToChew(double percentageOfFoodNeedToChew) {
+        this.percentageOfFoodNeedToChew = percentageOfFoodNeedToChew;
+    }
+
+    public void setFloorOnChewAmount(double floorOnChewAmount) {
+        this.floorOnChewAmount = floorOnChewAmount;
+    }
+
+    public void setMeatEaterSize(double meatEaterSize) {
+        this.meatEaterSize = meatEaterSize;
+    }
+
+    public void setMeatEaterGrowthRate(double meatEaterGrowthRate) {
+        this.meatEaterGrowthRate = meatEaterGrowthRate;
+    }
+
+    public void setMeatEaterFoodNeed(double meatEaterFoodNeed) {
+        this.meatEaterFoodNeed = meatEaterFoodNeed;
+    }
+
+    public void setProbabilityOldAgeDeathPlantEater(double probabilityOldAgeDeathPlantEater) {
+        this.probabilityOldAgeDeathPlantEater = probabilityOldAgeDeathPlantEater;
+    }
+
+    public void setProbabilityOldAgeDeathMeatEater(double probabilityOldAgeDeathMeatEater) {
+        this.probabilityOldAgeDeathMeatEater = probabilityOldAgeDeathMeatEater;
+    }
+
+    public void setProbabilityOldAgeDeathPlant(double probabilityOldAgeDeathPlant) {
+        this.probabilityOldAgeDeathPlant = probabilityOldAgeDeathPlant;
+    }
+
+    public void setProbabilityOldAgeDeathCreature(double probabilityOldAgeDeathCreature) {
+        this.probabilityOldAgeDeathCreature = probabilityOldAgeDeathCreature;
+    }
+
+    public void setLifespanPlant(int lifespanPlant) {
+        this.lifespanPlant = lifespanPlant;
+    }
+
+    public void setLifespanPlantEater(int lifespanPlantEater) {
+        this.lifespanPlantEater = lifespanPlantEater;
+    }
+
+    public void setLifespanMeatEater(int lifespanMeatEater) {
+        this.lifespanMeatEater = lifespanMeatEater;
+    }
+
+    public void setNumMeatEaters(int numMeatEaters) {
+        this.numMeatEaters = numMeatEaters;
+    }
+
+    public void setUpdateFoodNeedPercentage(double updateFoodNeedPercentage) {
+        this.updateFoodNeedPercentage = updateFoodNeedPercentage;
+    }
+
+    public void setMeatEaterProbabilityToCatch(double meatEaterProbabilityToCatch) {
+        this.meatEaterProbabilityToCatch = meatEaterProbabilityToCatch;
+    }
+
+    public void setLowerBoundNumPlantEatersEat(int lowerBoundNumPlantEatersEat) {
+        this.lowerBoundNumPlantEatersEat = lowerBoundNumPlantEatersEat;
+    }
+
+    public void setUpperBoundNumPlantEatersEat(int upperBoundNumPlantEatersEat) {
+        this.upperBoundNumPlantEatersEat = upperBoundNumPlantEatersEat;
+    }
+
+    public void setNumPlantEaters(int numPlantEaters) {
+        this.numPlantEaters = numPlantEaters;
+    }
+
+    public void setNumPlants(int numPlants) {
+        this.numPlants = numPlants;
+    }
+
+    public void setPlantSizeLowerBound(int plantSizeLowerBound) {
+        this.plantSizeLowerBound = plantSizeLowerBound;
+    }
+
+    public void setPlantSizeUpperBound(int plantSizeUpperBound) {
+        this.plantSizeUpperBound = plantSizeUpperBound;
+    }
+
+    public void setPlantGrowthRate(int plantGrowthRate) {
+        this.plantGrowthRate = plantGrowthRate;
+    }
+
+    public void setPlantEaterSizeLowerBound(int plantEaterSizeLowerBound) {
+        this.plantEaterSizeLowerBound = plantEaterSizeLowerBound;
+    }
+
+    public void setPlantEaterSizeUpperBound(int plantEaterSizeUpperBound) {
+        this.plantEaterSizeUpperBound = plantEaterSizeUpperBound;
+    }
+
+    public void setPlantEaterGrowthRate(int plantEaterGrowthRate) {
+        this.plantEaterGrowthRate = plantEaterGrowthRate;
+    }
+
+    public void setPlantEaterFoodNeed(int plantEaterFoodNeed) {
+        this.plantEaterFoodNeed = plantEaterFoodNeed;
+    }
+
+    public void setPlantReproductionProbability(double plantReproductionProbability) {
+        this.plantReproductionProbability = plantReproductionProbability;
+    }
+
+    public void setFloorNewPlantSize(int floorNewPlantSize) {
+        this.floorNewPlantSize = floorNewPlantSize;
+    }
+
+    public void setCeilingNewPlantSize(int ceilingNewPlantSize) {
+        this.ceilingNewPlantSize = ceilingNewPlantSize;
+    }
+
+    public void setPlantEaterReproductionProbability(double plantEaterReproductionProbability) {
+        this.plantEaterReproductionProbability = plantEaterReproductionProbability;
+    }
+
+    public void setFloorNewPlantEaterSize(int floorNewPlantEaterSize) {
+        this.floorNewPlantEaterSize = floorNewPlantEaterSize;
+    }
+
+    public void setCeilingNewPlantEaterSize(int ceilingNewPlantEaterSize) {
+        this.ceilingNewPlantEaterSize = ceilingNewPlantEaterSize;
+    }
+
+    public void setMeatEaterReproductionProbability(double meatEaterReproductionProbability) {
+        this.meatEaterReproductionProbability = meatEaterReproductionProbability;
+    }
+
+    @Override
+    public String toString() {
+        return "ParameterRecord{" +
+                "lowerBoundNumPlantsToChew=" + lowerBoundNumPlantsToChew +
+                ", upperBoundNumPlantsToChew=" + upperBoundNumPlantsToChew +
+                ", amountOfPlantMaxChewed=" + amountOfPlantMaxChewed +
+                ", percentageOfFoodNeedToChew=" + percentageOfFoodNeedToChew +
+                ", floorOnChewAmount=" + floorOnChewAmount +
+                ", meatEaterSize=" + meatEaterSize +
+                ", meatEaterGrowthRate=" + meatEaterGrowthRate +
+                ", meatEaterFoodNeed=" + meatEaterFoodNeed +
+                ", probabilityOldAgeDeathPlantEater=" + probabilityOldAgeDeathPlantEater +
+                ", probabilityOldAgeDeathMeatEater=" + probabilityOldAgeDeathMeatEater +
+                ", probabilityOldAgeDeathPlant=" + probabilityOldAgeDeathPlant +
+                ", probabilityOldAgeDeathCreature=" + probabilityOldAgeDeathCreature +
+                ", lifespanPlant=" + lifespanPlant +
+                ", lifespanPlantEater=" + lifespanPlantEater +
+                ", lifespanMeatEater=" + lifespanMeatEater +
+                ", numMeatEaters=" + numMeatEaters +
+                ", updateFoodNeedPercentage=" + updateFoodNeedPercentage +
+                ", meatEaterProbabilityToCatch=" + meatEaterProbabilityToCatch +
+                ", lowerBoundNumPlantEatersEat=" + lowerBoundNumPlantEatersEat +
+                ", upperBoundNumPlantEatersEat=" + upperBoundNumPlantEatersEat +
+                ", numPlantEaters=" + numPlantEaters +
+                ", numPlants=" + numPlants +
+                ", plantSizeLowerBound=" + plantSizeLowerBound +
+                ", plantSizeUpperBound=" + plantSizeUpperBound +
+                ", plantGrowthRate=" + plantGrowthRate +
+                ", plantEaterSizeLowerBound=" + plantEaterSizeLowerBound +
+                ", plantEaterSizeUpperBound=" + plantEaterSizeUpperBound +
+                ", plantEaterGrowthRate=" + plantEaterGrowthRate +
+                ", plantEaterFoodNeed=" + plantEaterFoodNeed +
+                ", plantReproductionProbability=" + plantReproductionProbability +
+                ", floorNewPlantSize=" + floorNewPlantSize +
+                ", ceilingNewPlantSize=" + ceilingNewPlantSize +
+                ", plantEaterReproductionProbability=" + plantEaterReproductionProbability;
+
+    }
 }
-
-
-
-
-

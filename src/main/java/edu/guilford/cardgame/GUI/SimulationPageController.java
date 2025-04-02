@@ -54,11 +54,10 @@ public class SimulationPageController {
         //TODO change this to account for the fact parameters will be changed
         graphButton.setOnMouseClicked(event -> {
             clearGraphs();
-
             ecosystem.resetSimulation();
             SimulationResults results = ecosystem.runSimulation();
             plotData(results);
-            System.out.println(SessionManager.getCurrentUser().getName());
+            System.out.println(results);
 
         });
 
@@ -76,7 +75,8 @@ public class SimulationPageController {
         lifeSpanPlant.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 int value = Integer.parseInt(newValue);
-                parameterRecord.setLifespanPlant(value);
+                parameterRecord.setNumMeatEaters(value);
+                System.out.println(parameterRecord.numMeatEaters());
             } catch (NumberFormatException e) {
                 // Handle invalid input
                 System.out.println("Invalid input for plant life span: " + newValue);
