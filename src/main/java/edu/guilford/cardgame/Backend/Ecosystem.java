@@ -24,22 +24,9 @@ public class Ecosystem {
 
         this.parameterRecord = parameterRecord;
         plants = new ArrayList<>();
-        for (int i = 0; i < parameterRecord.numPlants(); i++) {
-            plants.add(new Plant(random.nextDouble(parameterRecord.plantSizeLowerBound(),
-                    parameterRecord.plantSizeUpperBound()), parameterRecord.plantGrowthRate(), parameterRecord));
-        }
         plantEaters = new ArrayList<>();
-        for (int i = 0; i < parameterRecord.numPlantEaters(); i++) {
-            plantEaters.add(new PlantEater(random.nextDouble(parameterRecord.plantEaterSizeLowerBound(),
-                    parameterRecord.plantEaterSizeUpperBound()), parameterRecord.plantEaterGrowthRate(),
-                    parameterRecord.plantEaterFoodNeed(), plants, parameterRecord));
-        }
-
         meatEaters = new ArrayList<>();
-        for (int i = 0; i < parameterRecord.numMeatEaters(); i++) {
-            meatEaters.add(new MeatEater(parameterRecord.meatEaterSize(), parameterRecord.meatEaterGrowthRate(),
-                    parameterRecord.meatEaterFoodNeed(), plantEaters, parameterRecord));
-        }
+        createArrays();
 
     }
 //    public Ecosystem(int numPlants, int numPlantEaters, int numMeatEaters) {
@@ -150,7 +137,7 @@ public class Ecosystem {
      * @param creatures
      * @return boolean true if any of the creatures in the list are alive, and false otherwise.
      */
-    private static boolean stillAlive(ArrayList<? extends Creature> creatures) {
+    private  boolean stillAlive(ArrayList<? extends Creature> creatures) {
         for (Creature c : creatures) {
             if (c.getAlive()) {
                 return true;
@@ -164,7 +151,7 @@ public class Ecosystem {
      * @param creatures
      * @return double total mass of all the creatures in the list.
      */
-    private static double totalMass(ArrayList<? extends Creature> creatures) {
+    private  double totalMass(ArrayList<? extends Creature> creatures) {
         double totalMass = 0;
         for (Creature c : creatures) {
             totalMass += c.getSize();
@@ -172,4 +159,33 @@ public class Ecosystem {
         return totalMass;
     }
 
+
+    public void resetSimulation() {
+        plants.clear();
+        plantEaters.clear();
+        meatEaters.clear();
+        createArrays();
+
+
+    }
+
+    private void createArrays() {
+        for (int i = 0; i < parameterRecord.numPlants(); i++) {
+            plants.add(new Plant(random.nextDouble(parameterRecord.plantSizeLowerBound(),
+                    parameterRecord.plantSizeUpperBound()), parameterRecord.plantGrowthRate(), parameterRecord));
+        }
+        for (int i = 0; i < parameterRecord.numPlantEaters(); i++) {
+            plantEaters.add(new PlantEater(random.nextDouble(parameterRecord.plantEaterSizeLowerBound(),
+                    parameterRecord.plantEaterSizeUpperBound()), parameterRecord.plantEaterGrowthRate(),
+                    parameterRecord.plantEaterFoodNeed(), plants, parameterRecord));
+        }
+        for (int i = 0; i < parameterRecord.numMeatEaters(); i++) {
+            meatEaters.add(new MeatEater(parameterRecord.meatEaterSize(), parameterRecord.meatEaterGrowthRate(),
+                    parameterRecord.meatEaterFoodNeed(), plantEaters, parameterRecord));
+        }
+    }
+
+    public void setParameterRecord(ParameterRecord parameterRecord) {
+        this.parameterRecord = parameterRecord;
+    }
 }

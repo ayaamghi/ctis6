@@ -5,36 +5,41 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.guilford.cardgame.GUI.SimulationPageController">
-    <stylesheets>
-        <URL value="@styles.css" />
-    </stylesheets>
+<ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.guilford.cardgame.GUI.SimulationPageController">
+    <content>
+        <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+            <stylesheets>
+                <URL value="@styles.css" />
+            </stylesheets>
 
-    <children>
-            <ScatterChart fx:id="plantGraph" prefHeight="230.0" prefWidth="1080.0" styleClass="small-scatter" title="Plants">
+            <ScatterChart fx:id="plantGraph" prefHeight="400.0" prefWidth="500.0" styleClass="small-scatter" title="Plants">
                 <xAxis>
                     <NumberAxis label="Day" side="BOTTOM" />
                 </xAxis>
                 <yAxis>
-                    <NumberAxis label="Plant Count" side="LEFT" />
+                    <NumberAxis label="Plant Biomass" side="LEFT" />
                 </yAxis>
             </ScatterChart>
-            <ScatterChart fx:id="plantEaterGraph" layoutY="460.0" prefHeight="230.0" prefWidth="1080.0" styleClass="small-scatter" title="Plant Eaters ">
+
+            <ScatterChart fx:id="plantEaterGraph" prefHeight="400.0" prefWidth="500.0" styleClass="small-scatter" title="Plant Eaters">
                 <xAxis>
                     <NumberAxis label="Day" side="BOTTOM" />
                 </xAxis>
                 <yAxis>
-                    <NumberAxis label="Plant Eater Count" side="LEFT" />
+                    <NumberAxis label="Plant Eater Biomass" side="LEFT" />
                 </yAxis>
             </ScatterChart>
-            <ScatterChart fx:id="meatEaterGraph" layoutX="25.0" layoutY="230.0" prefHeight="230.0" prefWidth="1080.0" styleClass="small-scatter" title="Meat Eaters">
+
+            <ScatterChart fx:id="meatEaterGraph" prefHeight="400.0" prefWidth="500.0" styleClass="small-scatter" title="Meat Eaters">
                 <xAxis>
                     <NumberAxis label="Day" side="BOTTOM" />
                 </xAxis>
                 <yAxis>
-                    <NumberAxis label="Meat Eater Count" side="LEFT" />
+                    <NumberAxis label="Meat Eater Biomass" side="LEFT" />
                 </yAxis>
             </ScatterChart>
-        <Button fx:id="graphButton" layoutX="492.0" layoutY="728.0" mnemonicParsing="false" text="Update Graph" />
-    </children>
-</AnchorPane>
+
+            <Button fx:id="graphButton" text="Update Graph" />
+        </VBox>
+    </content>
+</ScrollPane>

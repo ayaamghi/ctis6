@@ -21,6 +21,11 @@ public class SimulationResults {
     private double maxMeatEaterMass;
 
 
+    private double medianPlantMass;
+    private double medianPlantEaterMass;
+    private double medianMeatEaterMass;
+
+
 
     public ArrayList<Day> getDays() {
         return days;
@@ -33,7 +38,12 @@ public class SimulationResults {
                        double plantEaterMass, double meatEaterMass) {
         days.add(new Day(day, plantCount, plantEaterCount, meatEaterCount, plantMass, plantEaterMass, meatEaterMass));
         calculateMaxValues();
+
     }
+
+
+
+
 
     private void calculateMaxValues() {
         maxPlantCount = 0;
@@ -117,6 +127,21 @@ public class SimulationResults {
     public double getMaxMeatEaterMass() {
         return maxMeatEaterMass;
     }
+
+    public double getMedianPlantMass() {
+        return medianPlantMass;
+    }
+
+    public double getMedianPlantEaterMass() {
+        return medianPlantEaterMass;
+    }
+
+    public double getMedianMeatEaterMass() {
+        return medianMeatEaterMass;
+    }
+
+
+
 
     @Override
     public String toString() {
