@@ -1,7 +1,9 @@
 package edu.guilford.cardgame.GUI;
 
 import edu.guilford.cardgame.Backend.Accounts.AccountJSONManager;
+import edu.guilford.cardgame.Backend.Accounts.SessionManager;
 import edu.guilford.cardgame.Backend.Accounts.User;
+import edu.guilford.cardgame.Backend.Params.ParameterRecord;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -61,6 +63,7 @@ public class LoginController {
                     user = AccountJSONManager.loadUserFromJson("src/main/resources/Users/" + username + ".json");
                     if (user.getPassword().equals(password)) {
                         try {
+                            SessionManager.setCurrentUser(user);
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/edu/guilford/cardgame/simulation-page.fxml"));
                             Parent root = fxmlLoader.load();
                             Scene scene = new Scene(root);
@@ -80,12 +83,16 @@ public class LoginController {
             else {
                 try {
                     AccountJSONManager.saveUserToJson("src/main/resources/Users/" + username + ".json", user);
+                    AccountJSONManager.updateUserParameterRecord("src/main/resources/Users/" + username + ".json", new ParameterRecord());
+                    SessionManager.setCurrentUser(user);
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
                 System.out.println("Saved user to json file");
 
             }
+
 
         });
     }

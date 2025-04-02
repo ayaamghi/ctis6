@@ -1,5 +1,7 @@
 package edu.guilford.cardgame.GUI;
 
+import edu.guilford.cardgame.Backend.Accounts.AccountJSONManager;
+import edu.guilford.cardgame.Backend.Accounts.SessionManager;
 import edu.guilford.cardgame.Backend.DataAnalysis.Day;
 import edu.guilford.cardgame.Backend.DataAnalysis.SimulationResults;
 import edu.guilford.cardgame.Backend.Ecosystem;
@@ -7,10 +9,19 @@ import edu.guilford.cardgame.Backend.Params.ParameterRecord;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.CacheHint;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.function.ToIntFunction;
@@ -23,19 +34,55 @@ public class SimulationPageController {
     @FXML private ScatterChart<Number, Number> meatEaterGraph;
     @FXML private Button graphButton;
 
+    @FXML private Slider plantDeathProbabilitySlider;
+
+    @FXML private Label plantDeathPercentageLabel;
+
+    @FXML private TextField lifeSpanPlant;
+
+
+
+
+
     @FXML
     public void initialize() throws IOException {
-        Ecosystem ecosystem = new Ecosystem(new ParameterRecord());
+        // Set up the axes for the scatter charrts
+
+        ParameterRecord parameterRecord = AccountJSONManager.getUserParameterRecord("src/main/resources/Users/" + SessionManager.getCurrentUser().getName() + ".json");
+         Ecosystem ecosystem = new Ecosystem(parameterRecord);
+
+        //TODO change this to account for the fact parameters will be changed
         graphButton.setOnMouseClicked(event -> {
             clearGraphs();
 
             ecosystem.resetSimulation();
             SimulationResults results = ecosystem.runSimulation();
             plotData(results);
-
-
+            System.out.println(SessionManager.getCurrentUser().getName());
 
         });
+
+
+        plantDeathProbabilitySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            double value = newValue.doubleValue();
+            plantDeathPercentageLabel.setText(String.format("%.2f", value));
+        });
+
+
+        plantDeathProbabilitySlider.setValue(parameterRecord.probabilityOldAgeDeathPlant());
+
+        lifeSpanPlant.setPromptText("Plant Life Span (" + parameterRecord.lifespanPlant() + ")");
+
+        lifeSpanPlant.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                int value = Integer.parseInt(newValue);
+                parameterRecord.setLifespanPlant(value);
+            } catch (NumberFormatException e) {
+                // Handle invalid input
+                System.out.println("Invalid input for plant life span: " + newValue);
+            }
+        });
+
     }
 
     private void clearGraphs() {
@@ -43,6 +90,8 @@ public class SimulationPageController {
         plantEaterGraph.getData().clear();
         meatEaterGraph.getData().clear();
     }
+
+
 
     private void plotData(SimulationResults results) {
 

@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.guilford.cardgame.GUI.ChangeParamtersPageController"
-            prefHeight="400.0" prefWidth="600.0">
+<TabPane fx:controller = "edu.guilford.cardgame.GUI.ChangeParametersPageController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1372.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab text="Plants Parameters" >
+       <AnchorPane>
+         <HBox alignment="CENTER" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+           <TextField fx:id="lifeSpanPlant" alignment="CENTER" promptText="Plant Life Span"/>
+           <Slider fx:id = "probabilityOldAgeDeathPlant" max="1.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="false" value="0.5"/>
+         </HBox>
+       </AnchorPane>
+    </Tab>
+     <Tab text="Plant Eaters Parameters">
+        <AnchorPane>
+          <HBox alignment="CENTER" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <TextField fx:id="lifeSpanPlantEater" alignment="CENTER" promptText="Plant Life Span"/>
+            <Slider fx:id = "probabilityOldAgeDeathPlantEater" max="1.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="false" value="0.5"/>
+            <Slider fx:id = "amountOfPlantMaxChewed" max="1.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="false" value="0.5"/>
+            <Slider fx:id = "amountOfFoodNeedToChew" max="1.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="false" value="0.5"/>
+            <Slider fx:id = "floorOnChewAmount" max="1.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="false" value="0.5"/>
+            <Slider fx:id = "lowerBoundNumPlantsToChew" max="1.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="false" value="0.5"/>
+            <Slider fx:id = "upperBoundNumPlantsToChew" max="1.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="false" value="0.5"/>
+          </HBox>
 
-</AnchorPane>
+        </AnchorPane>
+    </Tab>
+      <Tab text="Meat Eaters Parameters">
+          <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          </content>
+      </Tab>
+    <Tab text="Overall Simulation Parameters">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </Tab>
+
+
+  </tabs>
+</TabPane>

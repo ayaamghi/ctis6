@@ -6,6 +6,7 @@ package edu.guilford.cardgame.Backend.Params;
  * The parameters are stored as doubles or ints, and can be accessed using the getValue() or getIntValue() methods.
  * Legacy system from the original assignment, kept around for default values
  */
+
 public enum Parameters {
 
     //create a list of the parameters that will be used in the simulation

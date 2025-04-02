@@ -1,5 +1,9 @@
 package edu.guilford.cardgame.Backend.Params;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public record ParameterRecord(
         double lowerBoundNumPlantsToChew,
         double upperBoundNumPlantsToChew,
