@@ -300,6 +300,7 @@
                 <URL value="@styles.css" />
             </stylesheets>
             <Button fx:id="graphButton" text="Update Graph" />
+            <Button fx:id="saveButton" text="Save Configuration" />
 
             <ScatterChart fx:id="plantGraph" prefHeight="376.0" prefWidth="557.0" styleClass="small-scatter" title="Plants">
                 <xAxis>

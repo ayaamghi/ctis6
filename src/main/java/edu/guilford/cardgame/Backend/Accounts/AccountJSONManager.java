@@ -34,6 +34,7 @@ public class AccountJSONManager {
         try {
             ObjectMapper mapper = new ObjectMapper();
             User user = mapper.readValue(new File(filePath), User.class);
+            System.out.println("User parameter record: " + user.getParameterRecord());
             return user.getParameterRecord();
         } catch (IOException e) {
             e.printStackTrace();

@@ -117,12 +117,13 @@ public class SimulationPageController {
     @FXML private Label updateFoodNeedPercentageLabel;
 
 
+    @FXML private Button saveButton;
     @FXML
     public void initialize() throws IOException {
         // Set up the axes for the scatter charrts
 
         ParameterRecord parameterRecord = AccountJSONManager.getUserParameterRecord("src/main/resources/Users/" + SessionManager.getCurrentUser().getName() + ".json");
-         Ecosystem ecosystem = new Ecosystem(parameterRecord);
+        Ecosystem ecosystem = new Ecosystem(parameterRecord);
 
         //TODO change this to account for the fact parameters will be changed
         graphButton.setOnMouseClicked(event -> {
@@ -132,6 +133,18 @@ public class SimulationPageController {
             plotData(results);
             System.out.println(results);
 
+        });
+
+
+        saveButton.setOnMouseClicked(event -> {
+
+            try {
+                System.out.println("Saving parameters...");
+                System.out.println(parameterRecord);
+                AccountJSONManager.updateUserParameterRecord("src/main/resources/Users/" + SessionManager.getCurrentUser().getName() + ".json", parameterRecord);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
 

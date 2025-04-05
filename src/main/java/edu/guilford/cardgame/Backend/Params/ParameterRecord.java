@@ -1,6 +1,7 @@
 package edu.guilford.cardgame.Backend.Params;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ParameterRecord {
@@ -167,46 +168,57 @@ public class ParameterRecord {
 
     // -- Getters (named like record accessors) --
 
+    @JsonProperty("lowerBoundNumPlantsToChew")
     public double lowerBoundNumPlantsToChew() {
         return lowerBoundNumPlantsToChew;
     }
 
+    @JsonProperty("upperBoundNumPlantsToChew")
     public double upperBoundNumPlantsToChew() {
         return upperBoundNumPlantsToChew;
     }
 
+    @JsonProperty("amountOfPlantMaxChewed")
     public double amountOfPlantMaxChewed() {
         return amountOfPlantMaxChewed;
     }
 
+    @JsonProperty("percentageOfFoodNeedToChew")
     public double percentageOfFoodNeedToChew() {
         return percentageOfFoodNeedToChew;
     }
 
+    @JsonProperty("floorOnChewAmount")
     public double floorOnChewAmount() {
         return floorOnChewAmount;
     }
 
+    @JsonProperty("meatEaterSize")
     public double meatEaterSize() {
         return meatEaterSize;
     }
 
+    @JsonProperty("meatEaterGrowthRate")
     public double meatEaterGrowthRate() {
         return meatEaterGrowthRate;
     }
 
+    @JsonProperty("meatEaterFoodNeed")
     public double meatEaterFoodNeed() {
         return meatEaterFoodNeed;
     }
 
+    @JsonProperty("probabilityOldAgeDeathPlantEater")
     public double probabilityOldAgeDeathPlantEater() {
         return probabilityOldAgeDeathPlantEater;
     }
 
+    @JsonProperty("probabilityOldAgeDeathMeatEater")
     public double probabilityOldAgeDeathMeatEater() {
         return probabilityOldAgeDeathMeatEater;
     }
 
+    @JsonProperty("probabilityOldAgeDeathPlant")
     public double probabilityOldAgeDeathPlant() {
         return probabilityOldAgeDeathPlant;
     }
@@ -215,98 +227,124 @@ public class ParameterRecord {
         return probabilityOldAgeDeathCreature;
     }
 
+
+    @JsonProperty("lifespanPlant")
     public int lifespanPlant() {
         return lifespanPlant;
     }
 
+    @JsonProperty("lifespanPlantEater")
     public int lifespanPlantEater() {
         return lifespanPlantEater;
     }
 
+    @JsonProperty("lifespanMeatEater")
     public int lifespanMeatEater() {
         return lifespanMeatEater;
     }
 
+    @JsonProperty("numMeatEaters")
     public int numMeatEaters() {
         return numMeatEaters;
     }
 
+    @JsonProperty("updateFoodNeedPercentage")
     public double updateFoodNeedPercentage() {
         return updateFoodNeedPercentage;
     }
 
+    @JsonProperty("meatEaterProbabilityToCatch")
     public double meatEaterProbabilityToCatch() {
         return meatEaterProbabilityToCatch;
     }
 
+    @JsonProperty("lowerBoundNumPlantEatersEat")
     public int lowerBoundNumPlantEatersEat() {
         return lowerBoundNumPlantEatersEat;
     }
 
+    @JsonProperty("upperBoundNumPlantEatersEat")
     public int upperBoundNumPlantEatersEat() {
         return upperBoundNumPlantEatersEat;
     }
 
+    @JsonProperty("numPlantEaters")
     public int numPlantEaters() {
         return numPlantEaters;
     }
 
+    @JsonProperty("numPlants")
     public int numPlants() {
         return numPlants;
     }
 
+    @JsonProperty("plantSizeLowerBound")
     public int plantSizeLowerBound() {
         return plantSizeLowerBound;
     }
 
+    @JsonProperty("plantSizeUpperBound")
     public int plantSizeUpperBound() {
         return plantSizeUpperBound;
     }
 
+    @JsonProperty("plantGrowthRate")
     public int plantGrowthRate() {
         return plantGrowthRate;
     }
 
+    @JsonProperty("plantEaterSizeLowerBound")
     public int plantEaterSizeLowerBound() {
         return plantEaterSizeLowerBound;
     }
 
+    @JsonProperty("plantEaterSizeUpperBound")
     public int plantEaterSizeUpperBound() {
         return plantEaterSizeUpperBound;
     }
 
+    @JsonProperty("plantEaterGrowthRate")
     public int plantEaterGrowthRate() {
         return plantEaterGrowthRate;
     }
 
+    @JsonProperty("plantEaterFoodNeed")
     public int plantEaterFoodNeed() {
         return plantEaterFoodNeed;
     }
 
+    @JsonProperty("plantReproductionProbability")
     public double plantReproductionProbability() {
         return plantReproductionProbability;
     }
 
+
+    @JsonProperty("floorNewPlantSize")
     public int floorNewPlantSize() {
         return floorNewPlantSize;
     }
 
+    @JsonProperty("ceilingNewPlantSize")
     public int ceilingNewPlantSize() {
         return ceilingNewPlantSize;
     }
 
+    @JsonProperty("plantEaterReproductionProbability")
     public double plantEaterReproductionProbability() {
         return plantEaterReproductionProbability;
     }
 
+    @JsonProperty("floorNewPlantEaterSize")
     public int floorNewPlantEaterSize() {
         return floorNewPlantEaterSize;
     }
 
+    @JsonProperty("ceilingNewPlantEaterSize")
     public int ceilingNewPlantEaterSize() {
         return ceilingNewPlantEaterSize;
     }
 
+    @JsonProperty("meatEaterReproductionProbability")
     public double meatEaterReproductionProbability() {
         return meatEaterReproductionProbability;
     }
