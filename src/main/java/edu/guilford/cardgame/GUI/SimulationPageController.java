@@ -118,6 +118,8 @@ public class SimulationPageController {
 
 
     @FXML private Button saveButton;
+    @FXML private Button resetParametersButton;
+
     @FXML
     public void initialize() throws IOException {
         // Set up the axes for the scatter charrts
@@ -134,6 +136,7 @@ public class SimulationPageController {
             System.out.println(results);
 
         });
+
 
 
         saveButton.setOnMouseClicked(event -> {
@@ -216,6 +219,12 @@ public class SimulationPageController {
         lowerBoundNumPlantsToChewLabel.setText(String.format("%.2f", parameterRecord.lowerBoundNumPlantsToChew()));
         lowerBoundNumPlantsToChew.valueProperty().addListener((observable, oldValue, newValue) -> {
             double value = newValue.doubleValue();
+            if (value < parameterRecord.upperBoundNumPlantsToChew()) {
+                parameterRecord.setLowerBoundNumPlantsToChew(value);
+            } else {
+                value = oldValue.doubleValue();
+                lowerBoundNumPlantsToChew.setValue((Double) oldValue);
+            }
             lowerBoundNumPlantsToChewLabel.setText(String.format("%.2f", value));
             parameterRecord.setLowerBoundNumPlantsToChew(value);
         });
@@ -225,6 +234,12 @@ public class SimulationPageController {
         upperBoundNumPlantsToChewLabel.setText(String.format("%.2f", parameterRecord.upperBoundNumPlantsToChew()));
         upperBoundNumPlantsToChew.valueProperty().addListener((observable, oldValue, newValue) -> {
             double value = newValue.doubleValue();
+            if (value > parameterRecord.lowerBoundNumPlantsToChew()) {
+                parameterRecord.setUpperBoundNumPlantsToChew(value);
+            } else {
+                value = oldValue.doubleValue();
+                upperBoundNumPlantsToChew.setValue((Double) oldValue);
+            }
             upperBoundNumPlantsToChewLabel.setText(String.format("%.2f", value));
             parameterRecord.setUpperBoundNumPlantsToChew(value);
         });
@@ -267,20 +282,26 @@ public class SimulationPageController {
         });
 
 // Lower Bound Num Plant Eaters Eat
-        //TODO fix this later maybe
         lowerBoundNumPlantEatersEatLabel.setText(String.format(String.valueOf(parameterRecord.lowerBoundNumPlantEatersEat())));
         lowerBoundNumPlantEatersEat.setValue(parameterRecord.lowerBoundNumPlantEatersEat());
         lowerBoundNumPlantEatersEat.valueProperty().addListener((observable, oldValue, newValue) -> {
             int value = (int) Math.round(newValue.doubleValue());
+            if (value > parameterRecord.upperBoundNumPlantEatersEat()) {
+                value = (int) Math.round(oldValue.doubleValue());
+                lowerBoundNumPlantEatersEat.setValue((Double) oldValue);
+            }
             lowerBoundNumPlantEatersEatLabel.setText(String.format("%d", value));
             parameterRecord.setLowerBoundNumPlantEatersEat(value);
         });
 
 // Upper Bound Num Plant Eaters Eat
-        //TODO fix this later maybe
         upperBoundNumPlantEatersEatLabel.setText(String.format(String.valueOf( parameterRecord.upperBoundNumPlantEatersEat())));
         upperBoundNumPlantEatersEat.setValue(parameterRecord.upperBoundNumPlantEatersEat());
         upperBoundNumPlantEatersEat.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.doubleValue() < parameterRecord.lowerBoundNumPlantEatersEat()) {
+                newValue = oldValue;
+                upperBoundNumPlantEatersEat.setValue((Double) oldValue);
+            }
             int value = (int) Math.round(newValue.doubleValue());
             upperBoundNumPlantEatersEatLabel.setText(String.format("%d", value));
             parameterRecord.setUpperBoundNumPlantEatersEat(value);
@@ -332,7 +353,16 @@ public class SimulationPageController {
             try {
                 plantSizeLowerBound.setStyle("-fx-border-color: black;");
                 int value = Integer.parseInt(newValue);
-                parameterRecord.setPlantSizeLowerBound(value);
+                if (value < parameterRecord.plantSizeUpperBound()) {
+                    parameterRecord.setPlantSizeLowerBound(value);
+
+                }
+                else {
+                    value = Integer.parseInt(oldValue);
+                    plantSizeLowerBound.setText(String.valueOf(value));
+                    plantSizeLowerBound.setStyle("-fx-border-color: red;");
+
+                }
             } catch (NumberFormatException e) {
                 plantSizeLowerBound.setStyle("-fx-border-color: red;");
             }
@@ -344,7 +374,13 @@ public class SimulationPageController {
             try {
                 plantSizeUpperBound.setStyle("-fx-border-color: black;");
                 int value = Integer.parseInt(newValue);
-                parameterRecord.setPlantSizeUpperBound(value);
+                if (value > parameterRecord.plantSizeLowerBound()) {
+                    parameterRecord.setPlantSizeUpperBound(value);
+                } else {
+                    value = Integer.parseInt(oldValue);
+                    plantSizeUpperBound.setText(String.valueOf(value));
+                    plantSizeUpperBound.setStyle("-fx-border-color: red;");
+                }
             } catch (NumberFormatException e) {
                 plantSizeUpperBound.setStyle("-fx-border-color: red;");
             }
@@ -370,7 +406,13 @@ public class SimulationPageController {
             try {
                 plantEaterSizeLowerBound.setStyle("-fx-border-color: black;");
                 int value = Integer.parseInt(newValue);
-                parameterRecord.setPlantEaterSizeLowerBound(value);
+                if (value < parameterRecord.plantEaterSizeUpperBound()) {
+                    parameterRecord.setPlantEaterSizeLowerBound(value);
+                } else {
+                    value = Integer.parseInt(oldValue);
+                    plantEaterSizeLowerBound.setText(String.valueOf(value));
+                    plantEaterSizeLowerBound.setStyle("-fx-border-color: red;");
+                }
             } catch (NumberFormatException e) {
                 plantEaterSizeLowerBound.setStyle("-fx-border-color: red;");
             }
@@ -382,7 +424,13 @@ public class SimulationPageController {
             try {
                 plantEaterSizeUpperBound.setStyle("-fx-border-color: black;");
                 int value = Integer.parseInt(newValue);
-                parameterRecord.setPlantEaterSizeUpperBound(value);
+                if (value > parameterRecord.plantEaterSizeLowerBound()) {
+                    parameterRecord.setPlantEaterSizeUpperBound(value);
+                } else {
+                    value = Integer.parseInt(oldValue);
+                    plantEaterSizeUpperBound.setText(String.valueOf(value));
+                    plantEaterSizeUpperBound.setStyle("-fx-border-color: red;");
+                }
             } catch (NumberFormatException e) {
                 plantEaterSizeUpperBound.setStyle("-fx-border-color: red;");
             }
@@ -496,7 +544,13 @@ public class SimulationPageController {
             try {
                 floorNewPlantSize.setStyle("-fx-border-color: black;");
                 int value = Integer.parseInt(newValue);
-                parameterRecord.setFloorNewPlantSize(value);
+                if(value < parameterRecord.ceilingNewPlantSize()) {
+                    parameterRecord.setFloorNewPlantSize(value);
+                } else {
+                    value = Integer.parseInt(oldValue);
+                    floorNewPlantSize.setText(String.valueOf(value));
+                    floorNewPlantSize.setStyle("-fx-border-color: red;");
+                }
             } catch (NumberFormatException e) {
                 floorNewPlantSize.setStyle("-fx-border-color: red;");
             }
@@ -508,7 +562,13 @@ public class SimulationPageController {
             try {
                 ceilingNewPlantSize.setStyle("-fx-border-color: black;");
                 int value = Integer.parseInt(newValue);
-                parameterRecord.setCeilingNewPlantSize(value);
+                if(value > parameterRecord.floorNewPlantSize()) {
+                    parameterRecord.setCeilingNewPlantSize(value);
+                } else {
+                    value = Integer.parseInt(oldValue);
+                    ceilingNewPlantSize.setText(String.valueOf(value));
+                    ceilingNewPlantSize.setStyle("-fx-border-color: red;");
+                }
             } catch (NumberFormatException e) {
                 ceilingNewPlantSize.setStyle("-fx-border-color: red;");
             }
@@ -520,7 +580,13 @@ public class SimulationPageController {
             try {
                 floorNewPlantEaterSize.setStyle("-fx-border-color: black;");
                 int value = Integer.parseInt(newValue);
-                parameterRecord.setFloorNewPlantEaterSize(value);
+                if(value < parameterRecord.ceilingNewPlantEaterSize()) {
+                    parameterRecord.setFloorNewPlantEaterSize(value);
+                } else {
+                    value = Integer.parseInt(oldValue);
+                    floorNewPlantEaterSize.setText(String.valueOf(value));
+                    floorNewPlantEaterSize.setStyle("-fx-border-color: red;");
+                }
             } catch (NumberFormatException e) {
                 floorNewPlantEaterSize.setStyle("-fx-border-color: red;");
             }
@@ -533,7 +599,13 @@ public class SimulationPageController {
             try {
                 ceilingNewPlantEaterSize.setStyle("-fx-border-color: black;");
                 int value = Integer.parseInt(newValue);
-                parameterRecord.setCeilingNewPlantEaterSize(value);
+                if(value > parameterRecord.floorNewPlantEaterSize()) {
+                    parameterRecord.setCeilingNewPlantEaterSize(value);
+                } else {
+                    value = Integer.parseInt(oldValue);
+                    ceilingNewPlantEaterSize.setText(String.valueOf(value));
+                    ceilingNewPlantEaterSize.setStyle("-fx-border-color: red;");
+                }
             } catch (NumberFormatException e) {
                 ceilingNewPlantEaterSize.setStyle("-fx-border-color: red;");
             }
